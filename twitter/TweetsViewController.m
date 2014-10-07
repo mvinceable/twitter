@@ -127,6 +127,11 @@
     [self.tweetTableView reloadData];
 }
 
+- (void)didTweetSuccessfully:(Tweet *)tweet {
+    // so a newly generated tweet can be replied or favorited
+    [self.tweetTableView reloadData];
+}
+
 - (void)didReply:(Tweet *)tweet {
     [self didTweet:tweet];
 }

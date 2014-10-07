@@ -12,8 +12,8 @@
 		201E587019E0CBE800BDC73E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 201E586F19E0CBE800BDC73E /* Images.xcassets */; };
 		201E587319E0CBE800BDC73E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 201E587119E0CBE800BDC73E /* LaunchScreen.xib */; };
 		201E587F19E0CBE800BDC73E /* twitterTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 201E587E19E0CBE800BDC73E /* twitterTests.m */; };
-		20434D8719E3AFFC0078BBD1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 20434D8619E3AFFC0078BBD1 /* README.md */; };
-		20434D8919E3B0040078BBD1 /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 20434D8819E3B0040078BBD1 /* demo.gif */; };
+		20434D8B19E3B6490078BBD1 /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 20434D8A19E3B6490078BBD1 /* README.md */; };
+		20434D8D19E3B6590078BBD1 /* demo.gif in Resources */ = {isa = PBXBuildFile; fileRef = 20434D8C19E3B6590078BBD1 /* demo.gif */; };
 		2074786519E11C3B0085DC5C /* TweetCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 2074786319E11C3B0085DC5C /* TweetCell.m */; };
 		2074786619E11C3B0085DC5C /* TweetCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2074786419E11C3B0085DC5C /* TweetCell.xib */; };
 		2074786A19E1210C0085DC5C /* TweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2074786819E1210C0085DC5C /* TweetViewController.m */; };
@@ -51,8 +51,8 @@
 		201E587819E0CBE800BDC73E /* twitterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = twitterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		201E587D19E0CBE800BDC73E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		201E587E19E0CBE800BDC73E /* twitterTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = twitterTests.m; sourceTree = "<group>"; };
-		20434D8619E3AFFC0078BBD1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		20434D8819E3B0040078BBD1 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
+		20434D8A19E3B6490078BBD1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		20434D8C19E3B6590078BBD1 /* demo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = demo.gif; sourceTree = "<group>"; };
 		2074786219E11C3B0085DC5C /* TweetCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetCell.h; sourceTree = "<group>"; };
 		2074786319E11C3B0085DC5C /* TweetCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetCell.m; sourceTree = "<group>"; };
 		2074786419E11C3B0085DC5C /* TweetCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetCell.xib; sourceTree = "<group>"; };
@@ -100,6 +100,8 @@
 		201E585619E0CBE700BDC73E = {
 			isa = PBXGroup;
 			children = (
+				20434D8C19E3B6590078BBD1 /* demo.gif */,
+				20434D8A19E3B6490078BBD1 /* README.md */,
 				201E586119E0CBE700BDC73E /* twitter */,
 				201E587B19E0CBE800BDC73E /* twitterTests */,
 				201E586019E0CBE700BDC73E /* Products */,
@@ -165,8 +167,6 @@
 				2074786219E11C3B0085DC5C /* TweetCell.h */,
 				2074786319E11C3B0085DC5C /* TweetCell.m */,
 				2074786419E11C3B0085DC5C /* TweetCell.xib */,
-				20434D8819E3B0040078BBD1 /* demo.gif */,
-				20434D8619E3AFFC0078BBD1 /* README.md */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -301,7 +301,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				20AD97CF19E0FB540041D672 /* TweetsViewController.xib in Resources */,
-				20434D8919E3B0040078BBD1 /* demo.gif in Resources */,
+				20434D8D19E3B6590078BBD1 /* demo.gif in Resources */,
 				2074786B19E1210C0085DC5C /* TweetViewController.xib in Resources */,
 				201E587319E0CBE800BDC73E /* LaunchScreen.xib in Resources */,
 				201E587019E0CBE800BDC73E /* Images.xcassets in Resources */,
@@ -367,7 +367,7 @@
 				201E586519E0CBE800BDC73E /* main.m in Sources */,
 				20AD97BF19E0CE9A0041D672 /* LoginViewController.m in Sources */,
 				20AD97CE19E0FB540041D672 /* TweetsViewController.m in Sources */,
-				20434D8719E3AFFC0078BBD1 /* README.md in Sources */,
+				20434D8B19E3B6490078BBD1 /* README.md in Sources */,
 				20AD97D519E107A00041D672 /* ComposeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

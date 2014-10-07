@@ -99,6 +99,7 @@
             // set tweet id so it can be favorited
             NSLog([NSString stringWithFormat:@"Tweet successful, tweet id_str: %@", tweetIdStr]);
             tweet.idStr = tweetIdStr;
+            [self.delegate didTweetSuccessfully:tweet];
         }
     }];
     
