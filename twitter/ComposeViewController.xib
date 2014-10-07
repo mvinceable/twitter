@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComposeViewController">
+            <connections>
+                <outlet property="nameLabel" destination="l5b-B9-1u4" id="WnB-nL-FNp"/>
+                <outlet property="profileImageView" destination="SGz-v4-SuO" id="LG6-Kb-xf3"/>
+                <outlet property="screenNameLabel" destination="PJM-Gc-YmG" id="2ix-yV-wX1"/>
+                <outlet property="tweetTextView" destination="BDg-Nc-Kjb" id="CVP-gF-McU"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="SGz-v4-SuO">
+                    <rect key="frame" x="16" y="16" width="48" height="48"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="3Zx-M2-2Gd"/>
+                        <constraint firstAttribute="height" constant="48" id="gp7-8m-8pu"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Last" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l5b-B9-1u4">
+                    <rect key="frame" x="72" y="16" width="520" height="16"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="13"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@handle" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PJM-Gc-YmG">
+                    <rect key="frame" x="72" y="37" width="520" height="16"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="13"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BDg-Nc-Kjb">
+                    <rect key="frame" x="8" y="80" width="584" height="448"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="18"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="SGz-v4-SuO" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="0pn-J6-xeu"/>
+                <constraint firstItem="BDg-Nc-Kjb" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="8" id="2EF-ON-AJQ"/>
+                <constraint firstAttribute="trailing" secondItem="PJM-Gc-YmG" secondAttribute="trailing" constant="8" id="2Ms-g7-bdi"/>
+                <constraint firstItem="PJM-Gc-YmG" firstAttribute="top" secondItem="l5b-B9-1u4" secondAttribute="bottom" constant="5" id="F3N-Ij-2vP"/>
+                <constraint firstItem="BDg-Nc-Kjb" firstAttribute="top" relation="greaterThanOrEqual" secondItem="PJM-Gc-YmG" secondAttribute="bottom" constant="16" id="SKz-pn-we5"/>
+                <constraint firstAttribute="bottom" secondItem="BDg-Nc-Kjb" secondAttribute="bottom" constant="8" id="dTo-iC-Yqi"/>
+                <constraint firstItem="BDg-Nc-Kjb" firstAttribute="top" secondItem="SGz-v4-SuO" secondAttribute="bottom" constant="16" id="ejh-9z-Lnf"/>
+                <constraint firstItem="SGz-v4-SuO" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="eug-ap-nl6"/>
+                <constraint firstAttribute="trailing" secondItem="BDg-Nc-Kjb" secondAttribute="trailing" constant="8" id="jTh-3u-Z7M"/>
+                <constraint firstAttribute="trailing" secondItem="l5b-B9-1u4" secondAttribute="trailing" constant="8" id="qcE-7b-Hq2"/>
+                <constraint firstItem="l5b-B9-1u4" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="16" id="tr0-JA-CfT"/>
+                <constraint firstItem="l5b-B9-1u4" firstAttribute="leading" secondItem="SGz-v4-SuO" secondAttribute="trailing" constant="8" id="vxB-pg-Tji"/>
+                <constraint firstItem="PJM-Gc-YmG" firstAttribute="leading" secondItem="SGz-v4-SuO" secondAttribute="trailing" constant="8" id="yui-JU-EPP"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <point key="canvasLocation" x="142" y="140"/>
+        </view>
+    </objects>
+</document>
