@@ -12,6 +12,8 @@
 @protocol ComposeViewControllerDelegate <NSObject>
 
 - (void)didTweet:(Tweet *)tweet;
+
+@optional
 - (void)didTweetSuccessfully:(Tweet *)tweet;
 
 @end

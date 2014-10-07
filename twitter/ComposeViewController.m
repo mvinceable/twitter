@@ -68,29 +68,7 @@
 }
 
 - (void)onTweet {
-    NSDate *now = [NSDate date];
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    formatter.dateFormat = @"EEE MMM d HH:mm:ss Z y";
-
-    NSDictionary *data = [NSDictionary dictionary];
-    NSDictionary *user = [NSDictionary dictionary];
-    User *currentUser = [User currentUser];
-    
-    user = @{
-             @"name" : currentUser.name,
-             @"screen_name" : currentUser.screenname,
-             @"profile_image_url" : currentUser.profileImageUrl,
-             @"description" : currentUser.tagline
-             };
-    data = @{ @"user" : user,
-              @"text" : self.tweetTextView.text,
-              @"created_at" : [formatter stringFromDate:now],
-              @"retweeted" : @NO,
-              @"favorited" : @NO,
-              @"in_reply_to_status_id_str" : self.replyToTweet ? self.replyToTweet.idStr : @NO
-              };
-    
-    Tweet *tweet = [[Tweet alloc] initWithDictionary:data];
+    Tweet *tweet = [[Tweet alloc] initWithText:self.tweetTextView.text replyToTweet:self.replyToTweet];
     
     [[TwitterClient sharedInstance] sendTweetWithParams:nil tweet:tweet completion:^(NSString *tweetIdStr, NSError *error) {
         if (error) {

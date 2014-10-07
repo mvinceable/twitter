@@ -84,13 +84,13 @@
     }
 
     if (tweet.retweetCount > 0) {
-        self.retweetCountLabel.text = [NSString stringWithFormat:@"%d", tweet.retweetCount];
+        self.retweetCountLabel.text = [NSString stringWithFormat:@"%ld", tweet.retweetCount];
     } else {
         self.retweetCountLabel.text = @"";
     }
 
     if (tweet.favoriteCount > 0) {
-        self.favoriteCountLabel.text = [NSString stringWithFormat:@"%d", tweet.favoriteCount];
+        self.favoriteCountLabel.text = [NSString stringWithFormat:@"%ld", tweet.favoriteCount];
     } else {
         self.favoriteCountLabel.text = @"";
     }
@@ -131,7 +131,7 @@
         self.retweetCountLabel.textColor = [UIColor blackColor];
     }
     if (_tweet.retweetCount > 0) {
-        self.retweetCountLabel.text = [NSString stringWithFormat:@"%d", _tweet.retweetCount];
+        self.retweetCountLabel.text = [NSString stringWithFormat:@"%ld", _tweet.retweetCount];
     } else {
         self.retweetCountLabel.text = @"";
     }
@@ -146,7 +146,7 @@
         self.favoriteCountLabel.textColor = [UIColor blackColor];
     }
     if (_tweet.favoriteCount > 0) {
-        self.favoriteCountLabel.text = [NSString stringWithFormat:@"%d", _tweet.favoriteCount];
+        self.favoriteCountLabel.text = [NSString stringWithFormat:@"%ld", _tweet.favoriteCount];
     } else {
         self.favoriteCountLabel.text = @"";
     }

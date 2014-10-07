@@ -99,14 +99,14 @@
 
 - (IBAction)onRetweet:(id)sender {
     [_tweet retweet];
-    self.retweetCountLabel.text = [NSString stringWithFormat:@"%d", _tweet.retweetCount];
+    self.retweetCountLabel.text = [NSString stringWithFormat:@"%ld", _tweet.retweetCount];
     [self highlightButton:self.retweetButton highlight:_tweet.retweeted];
     [self.delegate didRetweet:_tweet.retweeted];
 }
 
 - (IBAction)onFavorite:(id)sender {
     [_tweet favorite];
-    self.favoriteCountLabel.text = [NSString stringWithFormat:@"%d", _tweet.favoriteCount];
+    self.favoriteCountLabel.text = [NSString stringWithFormat:@"%ld", _tweet.favoriteCount];
     [self highlightButton:self.favoriteButton highlight:_tweet.favorited];
     [self.delegate didFavorite:_tweet.favorited];
 }

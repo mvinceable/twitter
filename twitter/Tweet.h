@@ -23,6 +23,7 @@
 @property (nonatomic, strong) NSString *retweetIdStr;
 
 - (id) initWithDictionary:(NSDictionary *)dictionary;
+- (id) initWithText:(NSString *)text replyToTweet:(Tweet *)replyToTweet;
 - (BOOL) retweet;
 - (BOOL) favorite;
 
