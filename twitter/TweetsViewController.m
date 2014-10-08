@@ -37,8 +37,8 @@
     // set title
     self.navigationItem.title = @"Home";
     
-    // add New button
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(onNew)];
+    // add New button icon
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(onNew)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
     
     // register tweet cell nib
@@ -127,7 +127,7 @@
     [self.tweetTableView reloadData];
 }
 
-- (void)didTweetSuccessfully:(Tweet *)tweet {
+- (void)didTweetSuccessfully {
     // so a newly generated tweet can be replied or favorited
     [self.tweetTableView reloadData];
 }

@@ -21,6 +21,7 @@
 @property (nonatomic, strong) NSString *idStr;
 @property (nonatomic, strong) NSString *replyToIdStr;
 @property (nonatomic, strong) NSString *retweetIdStr;
+@property (nonatomic, strong) Tweet *retweetedTweet;
 
 - (id) initWithDictionary:(NSDictionary *)dictionary;
 - (id) initWithText:(NSString *)text replyToTweet:(Tweet *)replyToTweet;

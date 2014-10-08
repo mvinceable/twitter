@@ -14,7 +14,7 @@
 - (void)didTweet:(Tweet *)tweet;
 
 @optional
-- (void)didTweetSuccessfully:(Tweet *)tweet;
+- (void)didTweetSuccessfully;
 
 @end
 

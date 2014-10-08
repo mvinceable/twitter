@@ -26,8 +26,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    // add Cancel button
-    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStylePlain target:self action:@selector(onCancel)];
+    // add Cancel button icon
+    UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(onCancel)];
     self.navigationItem.leftBarButtonItem = leftBarButton;
     
     // add Tweet button
@@ -48,7 +48,12 @@
     
     // set initial reply to string if a reply
     if (_replyToTweet) {
-        self.tweetTextView.text = [NSString stringWithFormat:@"@%@ ", _replyToTweet.user.screenname];
+        // if replying to a retweet, mention original tweet author and retweeter
+        if (_replyToTweet.retweetedTweet) {
+            self.tweetTextView.text = [NSString stringWithFormat:@"@%@ @%@ ", _replyToTweet.retweetedTweet.user.screenname, _replyToTweet.user.screenname];
+        } else {
+            self.tweetTextView.text = [NSString stringWithFormat:@"@%@ ", _replyToTweet.user.screenname];
+        }
     }
     
     // initialize character count
@@ -77,7 +82,9 @@
             // set tweet id so it can be favorited
             NSLog([NSString stringWithFormat:@"Tweet successful, tweet id_str: %@", tweetIdStr]);
             tweet.idStr = tweetIdStr;
-            [self.delegate didTweetSuccessfully:tweet];
+            if ([self.delegate respondsToSelector:@selector(didTweetSuccessfully)]) {
+                [self.delegate didTweetSuccessfully];
+            }
         }
     }];
     

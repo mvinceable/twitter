@@ -21,6 +21,12 @@
 @property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
 @property (weak, nonatomic) IBOutlet UILabel *retweetCountLabel;
 @property (weak, nonatomic) IBOutlet UILabel *favoriteCountLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *retweetView;
+@property (weak, nonatomic) IBOutlet UILabel *retweetedByLabel;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topProfileImageConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topNameConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topScreenNameConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *topTimestampConstraint;
 
 @end
 
@@ -40,19 +46,41 @@
     _tweet = tweet;
     
     User *user = tweet.user;
+    Tweet *tweetToDisplay;
+    
+    if (tweet.retweetedTweet) {
+        tweetToDisplay = tweet.retweetedTweet;
+        self.retweetedByLabel.text = [NSString stringWithFormat:@"%@ retweeted", user.name];
+        [self.retweetView setHidden:NO];
+        [self.retweetedByLabel setHidden:NO];
+        // update constraints dynamically
+        self.topProfileImageConstraint.constant = 32;
+        self.topNameConstraint.constant = 32;
+        self.topScreenNameConstraint.constant = 33;
+        self.topTimestampConstraint.constant = 32;
+    } else {
+        tweetToDisplay = tweet;
+        [self.retweetView setHidden:YES];
+        [self.retweetedByLabel setHidden:YES];
+        // update constraints dynamically
+        self.topProfileImageConstraint.constant = 16;
+        self.topNameConstraint.constant = 16;
+        self.topScreenNameConstraint.constant = 17;
+        self.topTimestampConstraint.constant = 16;
+    }
     
     // rounded corners for profile images
     CALayer *layer = [self.profileImageView layer];
     [layer setMasksToBounds:YES];
     [layer setCornerRadius:3.0];
-    [self.profileImageView setImageWithURL:[NSURL URLWithString:user.profileImageUrl]];
+    [self.profileImageView setImageWithURL:[NSURL URLWithString:tweetToDisplay.user.profileImageUrl]];
     
-    self.nameLabel.text = user.name;
-    self.screenNameLabel.text = [NSString stringWithFormat:@"@%@", user.screenname];
-    self.tweetLabel.text = tweet.text;
+    self.nameLabel.text = tweetToDisplay.user.name;
+    self.screenNameLabel.text = [NSString stringWithFormat:@"@%@", tweetToDisplay.user.screenname];
+    self.tweetLabel.text = tweetToDisplay.text;
     
     // show relative time since now if 24 hours or more has elapsed
-    NSTimeInterval secondsSinceTweet = -[_tweet.createdAt timeIntervalSinceNow];
+    NSTimeInterval secondsSinceTweet = -[tweetToDisplay.createdAt timeIntervalSinceNow];
     
     if (secondsSinceTweet >= 86400) {
         // show month, day, and year
@@ -75,7 +103,7 @@
         self.replyButton.enabled = self.retweetButton.enabled = self.favoriteButton.enabled = NO;
     } else {
         // disable retweet for self
-        if ([tweet.user.screenname isEqualToString:[User currentUser].screenname]) {
+        if ([user.screenname isEqualToString:[User currentUser].screenname]) {
             self.replyButton.enabled = self.favoriteButton.enabled = YES;
             self.retweetButton.enabled = NO;
         } else {
@@ -89,8 +117,8 @@
         self.retweetCountLabel.text = @"";
     }
 
-    if (tweet.favoriteCount > 0) {
-        self.favoriteCountLabel.text = [NSString stringWithFormat:@"%ld", tweet.favoriteCount];
+    if (tweetToDisplay.favoriteCount > 0) {
+        self.favoriteCountLabel.text = [NSString stringWithFormat:@"%ld", tweetToDisplay.favoriteCount];
     } else {
         self.favoriteCountLabel.text = @"";
     }
@@ -98,13 +126,13 @@
     if (tweet.retweeted) {
         self.retweetCountLabel.textColor = [UIColor greenColor];
     }  else {
-        self.retweetCountLabel.textColor = [UIColor blackColor];
+        self.retweetCountLabel.textColor = [UIColor grayColor];
     }
         
     if (tweet.favorited) {
         self.favoriteCountLabel.textColor = [UIColor orangeColor];
     } else {
-        self.favoriteCountLabel.textColor = [UIColor blackColor];
+        self.favoriteCountLabel.textColor = [UIColor grayColor];
     }
     
     [self.retweetButton setSelected:tweet.retweeted];
@@ -128,7 +156,7 @@
     if (retweeted) {
         self.retweetCountLabel.textColor = [UIColor greenColor];
     } else {
-        self.retweetCountLabel.textColor = [UIColor blackColor];
+        self.retweetCountLabel.textColor = [UIColor grayColor];
     }
     if (_tweet.retweetCount > 0) {
         self.retweetCountLabel.text = [NSString stringWithFormat:@"%ld", _tweet.retweetCount];
@@ -139,14 +167,21 @@
 }
 
 - (IBAction)onFavorite:(id)sender {
-    BOOL favorited = [_tweet favorite];
+    Tweet *tweetToFavorite;
+    if (_tweet.retweetedTweet) {
+        tweetToFavorite = _tweet.retweetedTweet;
+    } else {
+        tweetToFavorite = _tweet;
+    }
+    
+    BOOL favorited = [tweetToFavorite favorite];
     if (favorited) {
         self.favoriteCountLabel.textColor = [UIColor orangeColor];
     } else {
-        self.favoriteCountLabel.textColor = [UIColor blackColor];
+        self.favoriteCountLabel.textColor = [UIColor grayColor];
     }
-    if (_tweet.favoriteCount > 0) {
-        self.favoriteCountLabel.text = [NSString stringWithFormat:@"%ld", _tweet.favoriteCount];
+    if (tweetToFavorite.favoriteCount > 0) {
+        self.favoriteCountLabel.text = [NSString stringWithFormat:@"%ld", tweetToFavorite.favoriteCount];
     } else {
         self.favoriteCountLabel.text = @"";
     }

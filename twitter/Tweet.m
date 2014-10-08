@@ -38,6 +38,10 @@
         if (dictionary[@"current_user_retweet"]) {
             self.retweetIdStr = dictionary[@"current_user_retweet"][@"id_str"];
         }
+        
+        if (dictionary[@"retweeted_status"]) {
+            self.retweetedTweet = [[Tweet alloc] initWithDictionary:dictionary[@"retweeted_status"]];
+        }
     }
     return self;
 }
