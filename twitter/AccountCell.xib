@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="150" id="KGk-i7-Jjw" customClass="AccountCell">
+            <rect key="frame" x="0.0" y="0.0" width="458" height="150"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Nk8-ic-WD1">
+                        <rect key="frame" x="16" y="32" width="54" height="54"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="54" id="Sh0-4h-6gY"/>
+                            <constraint firstAttribute="height" constant="54" id="XZ1-Nm-0Od"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="First Last" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JJd-NK-4tV">
+                        <rect key="frame" x="16" y="94" width="71.5" height="19.5"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="16"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@handle" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KvW-ud-22C">
+                        <rect key="frame" x="16" y="113" width="46" height="14"/>
+                        <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="KvW-ud-22C" firstAttribute="top" secondItem="JJd-NK-4tV" secondAttribute="bottom" id="1ii-pN-pH4"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="KvW-ud-22C" secondAttribute="bottom" constant="16" id="AiE-Zu-ChZ"/>
+                    <constraint firstItem="JJd-NK-4tV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="CXq-rc-Mqn"/>
+                    <constraint firstItem="Nk8-ic-WD1" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="DR0-CV-tmN"/>
+                    <constraint firstItem="JJd-NK-4tV" firstAttribute="top" secondItem="Nk8-ic-WD1" secondAttribute="bottom" constant="8" id="K1U-Xp-W0I"/>
+                    <constraint firstItem="Nk8-ic-WD1" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Uoc-mv-gIV"/>
+                    <constraint firstItem="KvW-ud-22C" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="Xnh-mH-jJQ"/>
+                </constraints>
+            </tableViewCellContentView>
+            <gestureRecognizers/>
+            <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="nameLabel" destination="JJd-NK-4tV" id="fh7-HC-fDR"/>
+                <outlet property="profileImageView" destination="Nk8-ic-WD1" id="TcH-ev-vcP"/>
+                <outlet property="screenNameLabel" destination="KvW-ud-22C" id="NKl-DV-9uQ"/>
+            </connections>
+            <point key="canvasLocation" x="208" y="207"/>
+        </tableViewCell>
+    </objects>
+</document>

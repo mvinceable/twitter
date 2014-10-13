@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController">
             <connections>
+                <outlet property="twitterLogoView" destination="y6k-9Z-zna" id="jCu-Zb-TR9"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -15,33 +16,34 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3qL-6H-QGW">
-                    <rect key="frame" x="210" y="280" width="180" height="41"/>
+                    <rect key="frame" x="210" y="343.5" width="180" height="41"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Light" family="Helvetica Neue" pointSize="24"/>
                     <state key="normal" title="Login with Twitter">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
                     <connections>
                         <action selector="onLogin:" destination="-1" eventType="touchUpInside" id="qdn-EE-iJY"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bird_blue_48" translatesAutoresizingMaskIntoConstraints="NO" id="y6k-9Z-zna">
-                    <rect key="frame" x="278" y="221" width="44" height="35"/>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Twitter_logo_white" translatesAutoresizingMaskIntoConstraints="NO" id="y6k-9Z-zna">
+                    <rect key="frame" x="264.5" y="221.5" width="71" height="58"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="44" id="Wlt-hV-Urt"/>
-                        <constraint firstAttribute="height" constant="35" id="chK-uI-E3m"/>
+                        <constraint firstAttribute="width" constant="71" id="Wlt-hV-Urt"/>
+                        <constraint firstAttribute="height" constant="58" id="chK-uI-E3m"/>
                     </constraints>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.20000000000000001" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="3qL-6H-QGW" secondAttribute="centerX" id="FEH-dh-gpj"/>
-                <constraint firstAttribute="centerY" secondItem="3qL-6H-QGW" secondAttribute="centerY" id="bcx-ZL-EgN"/>
-                <constraint firstItem="3qL-6H-QGW" firstAttribute="top" secondItem="y6k-9Z-zna" secondAttribute="bottom" constant="24" id="n1Q-DV-tPq"/>
+                <constraint firstAttribute="centerY" secondItem="3qL-6H-QGW" secondAttribute="centerY" constant="-64" id="bcx-ZL-EgN"/>
+                <constraint firstItem="3qL-6H-QGW" firstAttribute="top" secondItem="y6k-9Z-zna" secondAttribute="bottom" constant="64" id="n1Q-DV-tPq"/>
                 <constraint firstAttribute="centerX" secondItem="y6k-9Z-zna" secondAttribute="centerX" id="pn9-rP-CBm"/>
             </constraints>
         </view>
     </objects>
     <resources>
-        <image name="bird_blue_48" width="44" height="35"/>
+        <image name="Twitter_logo_white" width="379" height="308"/>
     </resources>
 </document>

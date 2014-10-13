@@ -37,6 +37,8 @@
         
         if (dictionary[@"current_user_retweet"]) {
             self.retweetIdStr = dictionary[@"current_user_retweet"][@"id_str"];
+        } else if (self.retweeted && [self.user.screenname isEqualToString:[[User currentUser] screenname]]) {
+            self.retweetIdStr = self.idStr;
         }
         
         if (dictionary[@"retweeted_status"]) {
@@ -75,7 +77,7 @@
 }
 
 
-+ (NSArray *)tweetsWithArray:(NSArray *)array; {
++ (NSArray *)tweetsWithArray:(NSArray *)array {
     NSMutableArray *tweets = [NSMutableArray array];
     
     for (NSDictionary *dictionary in array) {

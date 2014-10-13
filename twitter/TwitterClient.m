@@ -40,7 +40,23 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
     [self fetchRequestTokenWithPath:@"oauth/request_token" method:@"GET" callbackURL:[NSURL URLWithString:@"cptwitterdemo://oauth"] scope:nil success:^(BDBOAuthToken *requestToken) {
         NSLog(@"got the request token!");
         
-        NSURL *authURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.twitter.com/oauth/authorize?oauth_token=%@", requestToken.token]];
+        NSURL *authURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.twitter.com/oauth/authorize?force_login=1&oauth_token=%@", requestToken.token]];
+        [[UIApplication sharedApplication] openURL:authURL];
+        
+    } failure:^(NSError *error) {
+        NSLog(@"Failed to get the request token!");
+        self.loginCompletion(nil, error);
+    }];
+}
+
+- (void)loginForUser:(User *)user completion:(void (^)(User *, NSError *))completion {
+    self.loginCompletion = completion;
+    
+    [self.requestSerializer removeAccessToken];
+    [self fetchRequestTokenWithPath:@"oauth/request_token" method:@"GET" callbackURL:[NSURL URLWithString:@"cptwitterdemo://oauth"] scope:nil success:^(BDBOAuthToken *requestToken) {
+        NSLog(@"got the request token!");
+        
+        NSURL *authURL = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.twitter.com/oauth/authorize?force_login=1&oauth_token=%@&screen_name=%@", requestToken.token, user.screenname]];
         [[UIApplication sharedApplication] openURL:authURL];
         
     } failure:^(NSError *error) {
@@ -50,6 +66,13 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
 }
 
 - (void)openURL:(NSURL *)url {
+    // gracefully handle cancel
+    if ([[url absoluteString] rangeOfString:@"denied"].location != NSNotFound) {
+        NSLog(@"Action denied");
+        self.loginCompletion(nil, [[NSError alloc] init]);
+        return;
+    }
+        
     [[TwitterClient sharedInstance] fetchAccessTokenWithPath:@"https://api.twitter.com/oauth/access_token" method:@"POST" requestToken:[BDBOAuthToken tokenWithQueryString:url.query] success:^(BDBOAuthToken *accessToken) {
         NSLog(@"got the access token!");
         [self.requestSerializer saveAccessToken:accessToken];
@@ -65,8 +88,30 @@ NSString * const kTwitterBaseUrl = @"https://api.twitter.com";
             self.loginCompletion(nil, error);
         }];
     } failure:^(NSError *error) {
-        NSLog(@"fialed to get the access token!");
+        NSLog(@"failed to get the access token!");
         self.loginCompletion(nil, error);
+    }];
+}
+
+- (void)userTimelineWithParams:(NSDictionary *)params user:(User *)user completion:(void (^)(NSArray *tweets, NSError *error))completion {
+    User *forUser = user ? user : [User currentUser];
+    NSString *getUrl = [NSString stringWithFormat:@"1.1/statuses/user_timeline.json?include_rts=1&count=20&include_my_retweet=1&screen_name=%@", forUser.screenname];
+    [self GET:getUrl parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog([NSString stringWithFormat:@"user timeline: %@", responseObject]);
+        NSArray *tweets = [Tweet tweetsWithArray:responseObject];
+        completion(tweets, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
+    }];
+}
+
+- (void)mentionsTimelineWithParams:(NSDictionary *)params completion:(void (^)(NSArray *tweets, NSError *error))completion {
+    [self GET:@"1.1/statuses/mentions_timeline.json?include_my_retweet=1" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//        NSLog([NSString stringWithFormat:@"mentions timeline: %@", responseObject]);
+        NSArray *tweets = [Tweet tweetsWithArray:responseObject];
+        completion(tweets, nil);
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        completion(nil, error);
     }];
 }
 
