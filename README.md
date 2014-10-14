@@ -28,8 +28,9 @@ Home Timeline
 
 Notes
 * When tapping on a profile image for a user you are already viewing a profile for, a shake effect happens to indicate you are already viewing that user's profile.
-* I don't store multiple access tokens in this version so you still need to enter your password when switching accounts.
 * I implemented long pressing of the navbar title to bring up the accounts view since no tab bar was used for this app.
+* The accounts screen can also be invoked via the slide out menu or by pulling down on the profile page similar to today's twitter app
+* I don't store multiple access tokens in this version so you still need to enter your password when switching accounts.
 
 References:
 
