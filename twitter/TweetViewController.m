@@ -90,7 +90,7 @@
         }
         
         // if this is the user's own tweet, disable retweet
-        if ([[[User currentUser] screenname] isEqualToString:user.screenname]) {
+        if (!_tweet.retweetedTweet && [[[User currentUser] screenname] isEqualToString:user.screenname]) {
             self.retweetButton.enabled = NO;
         }
     }}
@@ -120,7 +120,7 @@
 
 - (IBAction)onRetweet:(id)sender {
     [_tweet retweet];
-    self.retweetCountLabel.text = [NSString stringWithFormat:@"%ld", _tweet.retweetCount];
+    self.retweetCountLabel.text = [NSString stringWithFormat:@"%ld", (long)_tweet.retweetCount];
     [self highlightButton:self.retweetButton highlight:_tweet.retweeted];
     [self.delegate didRetweet:_tweet.retweeted];
 }
@@ -134,10 +134,16 @@
         tweetToFavorite = _tweet;
     }
 
-    [tweetToFavorite favorite];
-    self.favoriteCountLabel.text = [NSString stringWithFormat:@"%ld", tweetToFavorite.favoriteCount];
-    [self highlightButton:self.favoriteButton highlight:tweetToFavorite.favorited];
-    [self.delegate didFavorite:tweetToFavorite.favorited];
+    BOOL favorited = [tweetToFavorite favorite];
+    
+    // favorite/unfavorite the source
+    if (_tweet.retweetedTweet) {
+        _tweet.favorited = favorited;
+    }
+    
+    self.favoriteCountLabel.text = [NSString stringWithFormat:@"%ld", (long)tweetToFavorite.favoriteCount];
+    [self highlightButton:self.favoriteButton highlight:favorited];
+    [self.delegate didFavorite:favorited];
 }
 
 - (void)highlightButton:(UIButton *)button highlight:(BOOL)highlight {

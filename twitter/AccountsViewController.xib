@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AccountsViewController">
+            <connections>
+                <outlet property="tableView" destination="6MA-oX-ZIg" id="xuE-ts-7w3"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="6MA-oX-ZIg">
+                    <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <gestureRecognizers/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="6MA-oX-ZIg" secondAttribute="trailing" id="5Hs-YR-eXH"/>
+                <constraint firstAttribute="bottom" secondItem="6MA-oX-ZIg" secondAttribute="bottom" id="l1m-gz-xpZ"/>
+                <constraint firstItem="6MA-oX-ZIg" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="utI-d2-4uv"/>
+                <constraint firstItem="6MA-oX-ZIg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wGZ-0M-mzu"/>
+            </constraints>
+            <connections>
+                <outletCollection property="gestureRecognizers" destination="bCM-e2-YVW" appends="YES" id="8bV-LI-AV8"/>
+                <outletCollection property="gestureRecognizers" destination="BSh-S5-Hm5" appends="YES" id="MnN-p4-s9l"/>
+            </connections>
+        </view>
+        <swipeGestureRecognizer direction="right" id="bCM-e2-YVW">
+            <connections>
+                <action selector="onSwipe:" destination="-1" id="0Se-YD-co1"/>
+            </connections>
+        </swipeGestureRecognizer>
+        <panGestureRecognizer minimumNumberOfTouches="1" id="BSh-S5-Hm5">
+            <connections>
+                <action selector="onPan:" destination="-1" id="W3w-YG-ZyH"/>
+            </connections>
+        </panGestureRecognizer>
+    </objects>
+</document>

@@ -26,6 +26,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
+    // update status bar appearance
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault];
+    
     // add Cancel button icon
     UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemStop target:self action:@selector(onCancel)];
     self.navigationItem.leftBarButtonItem = leftBarButton;
@@ -50,10 +53,19 @@
     if (_replyToTweet) {
         // if replying to a retweet, mention original tweet author and retweeter
         if (_replyToTweet.retweetedTweet) {
-            self.tweetTextView.text = [NSString stringWithFormat:@"@%@ @%@ ", _replyToTweet.retweetedTweet.user.screenname, _replyToTweet.user.screenname];
+            if ([_replyToTweet.user.screenname isEqualToString:[[User currentUser] screenname]]) {
+                self.tweetTextView.text = [NSString stringWithFormat:@"@%@ ", _replyToTweet.retweetedTweet.user.screenname];
+            } else {
+                self.tweetTextView.text = [NSString stringWithFormat:@"@%@ @%@ ", _replyToTweet.retweetedTweet.user.screenname, _replyToTweet.user.screenname];
+            }
         } else {
             self.tweetTextView.text = [NSString stringWithFormat:@"@%@ ", _replyToTweet.user.screenname];
         }
+    }
+    
+    // set initial mention if writing to user
+    if (_messageToUser) {
+        self.tweetTextView.text = [NSString stringWithFormat:@"@%@ ", _messageToUser.screenname];
     }
     
     // initialize character count
@@ -69,6 +81,8 @@
 }
 
 - (void)onCancel {
+    // update status bar appearance
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -88,6 +102,8 @@
         }
     }];
     
+    // update status bar appearance
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     [self dismissViewControllerAnimated:YES completion:nil];
     
     [self.delegate didTweet:tweet];
@@ -101,7 +117,7 @@
     if (charsLeft < 0) {
         titleColor = [UIColor redColor];
     } else {
-        titleColor = [UIColor grayColor];
+        titleColor = [UIColor lightGrayColor];
     }
     if (charsLeft < 0 || charsLeft == 140) {
         // disable tweet button

@@ -10,8 +10,7 @@
 #import "LoginViewController.h"
 #import "TwitterClient.h"
 #import "User.h"
-#import "Tweet.h"
-#import "TweetsViewController.h"
+#import "MenuViewController.h"
 
 @interface AppDelegate ()
 
@@ -28,17 +27,17 @@
     User *user = [User currentUser];
     if (user != nil) {
         NSLog(@"Welcome %@", user.name);
-        TweetsViewController *vc = [[TweetsViewController alloc] init];
-        UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:vc];
-        // this is so navigation bar doesn't hide elements...
-        nvc.navigationBar.translucent = NO;
-        self.window.rootViewController = nvc;
+        MenuViewController *vc = [[MenuViewController alloc] init];
+        self.window.rootViewController = vc;
     } else {
         NSLog(@"Not logged in");
         self.window.rootViewController = [[LoginViewController alloc] init];
     }
     
     [self.window makeKeyAndVisible];
+    
+    // update status bar appearance
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
     
     return YES;
 }

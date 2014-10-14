@@ -21,6 +21,7 @@
 @interface ComposeViewController : UIViewController <UITextViewDelegate>
 
 @property (nonatomic, strong) Tweet *replyToTweet;
+@property (nonatomic, strong) User *messageToUser;
 
 @property (nonatomic, weak) id <ComposeViewControllerDelegate> delegate;
 

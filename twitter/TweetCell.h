@@ -14,6 +14,7 @@
 @protocol TweetCellDelegate <NSObject>
 
 - (void)onReply:(TweetCell *)tweetCell;
+- (void)onProfile:(User *)user;
 
 @end
 
@@ -22,6 +23,5 @@
 @property (nonatomic, strong) Tweet *tweet;
 
 @property (nonatomic, weak) id <TweetCellDelegate> delegate;
-
 
 @end

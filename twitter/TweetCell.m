@@ -102,8 +102,8 @@
     if (!tweet.idStr) {
         self.replyButton.enabled = self.retweetButton.enabled = self.favoriteButton.enabled = NO;
     } else {
-        // disable retweet for self
-        if ([user.screenname isEqualToString:[User currentUser].screenname]) {
+        // disable retweet for self and not retweet
+        if (!tweet.retweetedTweet && [user.screenname isEqualToString:[User currentUser].screenname]) {
             self.replyButton.enabled = self.favoriteButton.enabled = YES;
             self.retweetButton.enabled = NO;
         } else {
@@ -112,13 +112,13 @@
     }
 
     if (tweet.retweetCount > 0) {
-        self.retweetCountLabel.text = [NSString stringWithFormat:@"%ld", tweet.retweetCount];
+        self.retweetCountLabel.text = [NSString stringWithFormat:@"%ld", (long)tweet.retweetCount];
     } else {
         self.retweetCountLabel.text = @"";
     }
 
     if (tweetToDisplay.favoriteCount > 0) {
-        self.favoriteCountLabel.text = [NSString stringWithFormat:@"%ld", tweetToDisplay.favoriteCount];
+        self.favoriteCountLabel.text = [NSString stringWithFormat:@"%ld", (long)tweetToDisplay.favoriteCount];
     } else {
         self.favoriteCountLabel.text = @"";
     }
@@ -159,7 +159,7 @@
         self.retweetCountLabel.textColor = [UIColor grayColor];
     }
     if (_tweet.retweetCount > 0) {
-        self.retweetCountLabel.text = [NSString stringWithFormat:@"%ld", _tweet.retweetCount];
+        self.retweetCountLabel.text = [NSString stringWithFormat:@"%ld", (long)_tweet.retweetCount];
     } else {
         self.retweetCountLabel.text = @"";
     }
@@ -175,17 +175,31 @@
     }
     
     BOOL favorited = [tweetToFavorite favorite];
+    
+    // favorite/unfavorite the source
+    if (_tweet.retweetedTweet) {
+        _tweet.favorited = favorited;
+    }
+    
     if (favorited) {
         self.favoriteCountLabel.textColor = [UIColor orangeColor];
     } else {
         self.favoriteCountLabel.textColor = [UIColor grayColor];
     }
     if (tweetToFavorite.favoriteCount > 0) {
-        self.favoriteCountLabel.text = [NSString stringWithFormat:@"%ld", tweetToFavorite.favoriteCount];
+        self.favoriteCountLabel.text = [NSString stringWithFormat:@"%ld", (long)tweetToFavorite.favoriteCount];
     } else {
         self.favoriteCountLabel.text = @"";
     }
     [self highlightButton:self.favoriteButton highlight:favorited];
 }
 
+- (IBAction)onProfile:(id)sender {
+    NSLog(@"Profile tapped");
+    if (_tweet.retweetedTweet) {
+        [self.delegate onProfile:_tweet.retweetedTweet.user];
+    } else {
+        [self.delegate onProfile:_tweet.user];
+    }
+}
 @end
