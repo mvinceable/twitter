@@ -15,6 +15,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
+@property (weak, nonatomic) AccountCell *panningOnCell;
+
 @end
 
 @implementation AccountsViewController
@@ -68,6 +70,9 @@
         
         cell.user = [User accounts][indexPath.row];
         
+        // so we can handle the user delete action on cell
+        cell.delegate = self;
+        
         return cell;
     } else {
         UITableViewCell *cell = [[UITableViewCell alloc] init];
@@ -96,7 +101,6 @@
     if (swipedIndexPath && swipedIndexPath.row < [User accounts].count) {
         AccountCell *swipedCell  = (AccountCell *)[self.tableView cellForRowAtIndexPath:swipedIndexPath];
     
-        [User removeUser:swipedCell.user];
         
         [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:swipedIndexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
         
@@ -104,6 +108,38 @@
         if ([User accounts].count == 0) {
             [[NSNotificationCenter defaultCenter] postNotificationName:UserDidLogoutNotification object:nil];
         }
+    }
+}
+
+- (IBAction)onPan:(UIPanGestureRecognizer *)sender {
+    CGPoint location = [sender locationInView:self.view];
+    CGPoint translation = [sender translationInView:self.view];
+    CGPoint velocity = [sender velocityInView:self.view];
+    
+    NSIndexPath *indexPath = [self.tableView indexPathForRowAtPoint:location];
+    
+    // don't process the "add account" cell
+    if (indexPath && indexPath.row < [User accounts].count) {
+        // store the cell we started panning on so it doesn't change at any point afterward unless we're done panning
+        if (sender.state == UIGestureRecognizerStateBegan) {
+            self.panningOnCell = (AccountCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+        }
+        // simply relay the event to the cell that we're panning on
+        [self.panningOnCell onPan:sender location:location translation:translation velocity:velocity];
+    }
+    
+    // outside the if block so if pan ends on "add account" button, it's still routed to panned cell
+    if (sender.state == UIGestureRecognizerStateEnded) {
+        [self.panningOnCell onPan:sender location:location translation:translation velocity:velocity];
+    }
+}
+
+- (void)onUserDelete:(User *)user {
+    [User removeUser:user];
+    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationAutomatic];
+    // if there are no more accounts, show the main login screen
+    if ([User accounts].count == 0) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:UserDidLogoutNotification object:nil];
     }
 }
 

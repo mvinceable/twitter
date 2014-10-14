@@ -39,10 +39,22 @@
         // add Sign Out button
         UIBarButtonItem *leftBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out" style:UIBarButtonItemStylePlain target:self action:@selector(onLogout)];
         self.navigationItem.leftBarButtonItem = leftBarButton;
-    }
+        
+        // set up title with long press gesture recognizer
+        UILabel *navLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0, 300, 40)];
+        navLabel.text = user.name;
+        navLabel.textAlignment = NSTextAlignmentCenter;
+        navLabel.textColor = [UIColor whiteColor];
+        navLabel.font = [UIFont boldSystemFontOfSize:17.0f];    // default font for consistency
+        [navLabel setUserInteractionEnabled:YES];
+        self.navigationItem.titleView = navLabel;
     
-    // set title
-    self.navigationItem.title = user.name;
+        UILongPressGestureRecognizer *longPressGestureRecognizer = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(onNavBarLongPress)];
+    
+        [navLabel addGestureRecognizer:longPressGestureRecognizer];
+    } else {
+        self.navigationItem.title = user.name;
+    }
     
     // use banner url if provided, or profile bg url
     NSString *bannerUrl = user.bannerUrl ? [NSString stringWithFormat:@"%@/mobile_retina", user.bannerUrl] : user.backgroundImageUrl;

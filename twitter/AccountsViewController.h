@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "AccountCell.h"
 
 @protocol AccountsViewControllerDelegate <NSObject>
 
@@ -16,7 +17,7 @@
 
 @end
 
-@interface AccountsViewController : UIViewController
+@interface AccountsViewController : UIViewController <AccountCellDelegate>
 
 @property (nonatomic, weak) id <AccountsViewControllerDelegate> delegate;
 

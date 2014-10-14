@@ -9,8 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "User.h"
 
+@protocol AccountCellDelegate <NSObject>
+
+- (void)onUserDelete:(User *)user;
+
+@end
+
 @interface AccountCell : UITableViewCell
 
 @property (strong, nonatomic) User *user;
+
+- (void)onPan:(UIGestureRecognizer *)sender location:(CGPoint)location translation:(CGPoint)translation velocity:(CGPoint)velocity;
+
+@property (nonatomic, weak) id <AccountCellDelegate> delegate;
 
 @end
