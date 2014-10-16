@@ -27,8 +27,8 @@
     User *user = [User currentUser];
     if (user != nil) {
         NSLog(@"Welcome %@", user.name);
-        MenuViewController *vc = [[MenuViewController alloc] init];
-        self.window.rootViewController = vc;
+        MenuViewController *menuViewController = [[MenuViewController alloc] init];
+        self.window.rootViewController = menuViewController;
     } else {
         NSLog(@"Not logged in");
         self.window.rootViewController = [[LoginViewController alloc] init];
@@ -43,7 +43,16 @@
 }
 
 - (void)userDidLogout {
-    self.window.rootViewController = [[LoginViewController alloc] init];
+    if (User.accounts.count > 0) {
+        // show accounts screen
+        NSLog(@"Showing accounts screen after logout");
+        MenuViewController *menuViewController = [[MenuViewController alloc] init];
+        self.window.rootViewController = menuViewController;
+        [menuViewController showAccountViewController];
+    } else {
+        NSLog(@"Showing login screen after logout");
+        self.window.rootViewController = [[LoginViewController alloc] init];
+    }
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {

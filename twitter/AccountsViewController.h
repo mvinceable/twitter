@@ -21,6 +21,6 @@
 
 @property (nonatomic, weak) id <AccountsViewControllerDelegate> delegate;
 
-- (void)accountAdded;
+- (void)updateAccounts;
 
 @end
