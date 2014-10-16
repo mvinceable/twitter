@@ -12,4 +12,6 @@
 
 @interface MenuViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, ProfileViewControllerDelegate, AccountsViewControllerDelegate>
 
+- (void)showAccountViewController;
+
 @end

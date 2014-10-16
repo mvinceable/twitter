@@ -87,28 +87,8 @@
     }
 }
 
-- (void)accountAdded {
+- (void)updateAccounts {
     [self.tableView reloadData];
-}
-
-- (IBAction)onSwipe:(UISwipeGestureRecognizer *)sender {
-    NSLog(@"Account swiped");
-    
-    CGPoint location = [sender locationInView:self.tableView];
-    NSIndexPath *swipedIndexPath = [self.tableView indexPathForRowAtPoint:location];
-    
-    // don't count the add account cell
-    if (swipedIndexPath && swipedIndexPath.row < [User accounts].count) {
-        AccountCell *swipedCell  = (AccountCell *)[self.tableView cellForRowAtIndexPath:swipedIndexPath];
-    
-        
-        [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:swipedIndexPath.section] withRowAnimation:UITableViewRowAnimationAutomatic];
-        
-        // if there are no more accounts, show the main login screen
-        if ([User accounts].count == 0) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:UserDidLogoutNotification object:nil];
-        }
-    }
 }
 
 - (IBAction)onPan:(UIPanGestureRecognizer *)sender {

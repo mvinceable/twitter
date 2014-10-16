@@ -30,15 +30,9 @@
                 <constraint firstItem="6MA-oX-ZIg" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wGZ-0M-mzu"/>
             </constraints>
             <connections>
-                <outletCollection property="gestureRecognizers" destination="bCM-e2-YVW" appends="YES" id="8bV-LI-AV8"/>
                 <outletCollection property="gestureRecognizers" destination="BSh-S5-Hm5" appends="YES" id="MnN-p4-s9l"/>
             </connections>
         </view>
-        <swipeGestureRecognizer direction="right" id="bCM-e2-YVW">
-            <connections>
-                <action selector="onSwipe:" destination="-1" id="0Se-YD-co1"/>
-            </connections>
-        </swipeGestureRecognizer>
         <panGestureRecognizer minimumNumberOfTouches="1" id="BSh-S5-Hm5">
             <connections>
                 <action selector="onPan:" destination="-1" id="W3w-YG-ZyH"/>

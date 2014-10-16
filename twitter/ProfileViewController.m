@@ -83,7 +83,9 @@
     // show loading indicator
     self.loadingIndicator = [MBProgressHUD showHUDAddedTo:self.view animated:YES];
 
-    [self refreshProfile];
+    if (user) {
+        [self refreshProfile];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

@@ -197,7 +197,7 @@
     
     [[TwitterClient sharedInstance] loginWithCompletion:^(User *user, NSError *error) {
         if (user != nil) {
-            [self.avc accountAdded];
+            [self.avc updateAccounts];
             [self removeCurrentViewController];
             User.currentUser = user;
             [self setAccount];
@@ -243,6 +243,8 @@
     if (!self.avc) {
         self.avc = [[AccountsViewController alloc] init];
         self.avc.delegate = self;
+    } else {
+        [self.avc updateAccounts];
     }
     self.currentVC = self.avc;
     [self setAccountController];
