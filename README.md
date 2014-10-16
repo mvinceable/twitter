@@ -27,9 +27,9 @@ Home Timeline
 * [x] Swipe to delete an account
 
 Notes
-* When tapping on a profile image for a user you are already viewing a profile for, a shake effect happens to indicate you are already viewing that user's profile.
-* I implemented long pressing of the navbar title to bring up the accounts view since no tab bar was used for this app.
-* The accounts screen can also be invoked via the slide out menu or by pulling down on the profile page similar to today's twitter app
+* When tapping on a profile image for a user you are already viewing a profile for, a shake effect happens to indicate you are already viewing that user's profile, similar to today's twitter app.
+* Showing the accounts screen on long press was added to the navbar of the current user's profile page instead of the home timeline tab bar.  No tab bar was used in this app.
+* Pulling down on the current user's profile page will bring up the accounts screen, similar to today's twitter app.  The accounts screen can also be invoked via the slide out menu or by signing out the current user and there are other accounts stored.
 * I don't store multiple access tokens in this version so you still need to enter your password when switching accounts.
 
 References:
